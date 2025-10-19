@@ -32,6 +32,7 @@ add_executable(${PROJECT_NAME}
     src/texture.cpp
     src/mesh.cpp
     src/editor.cpp
+    src/shader.cpp
     src/imgui/imgui.cpp
     src/imgui/imgui_draw.cpp
     src/imgui/imgui_impl_sdl3.cpp
