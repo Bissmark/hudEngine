@@ -29,17 +29,14 @@ void Editor::Update()
     lastTime = currentTime;
     float fps = deltaTime > 0.0f ? 1.0f / deltaTime : 0.0f;
 
-    // Enable docking for moveable windows like in game engines
     ImGuiIO& io = ImGui::GetIO();
     
-    // FIX 1: Enable docking properly with ID
     if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
     {
         static ImGuiID dockspace_id = 0;
         dockspace_id = ImGui::DockSpaceOverViewport();
     }
 
-    // Your editor windows
     if (ImGui::Begin("Stats"))
     {
         ImGui::Text("FPS: %.1f", fps);
@@ -69,9 +66,24 @@ void Editor::Update()
     }
     ImGui::End();
 
-    if (ImGui::Begin("Properties"))
+    if (ImGui::Begin("Project"))
     {
-        ImGui::Text("Object properties will go here");
+        if (ImGui::TreeNode("Favourites"))
+        {
+            ImGui::Text("Favourites will go here");
+            ImGui::TreePop();
+        }
+        if (ImGui::TreeNode("Assets"))
+        {
+            ImGui::Text("Assets will go here");
+            ImGui::TreePop();
+        }
+    }
+    ImGui::End();
+
+    if (ImGui::Begin("Console")) 
+    {
+        ImGui::Text("Debugging Logs will go here");
     }
     ImGui::End();
 
@@ -101,10 +113,9 @@ void Editor::Update()
         ImGui::ShowDemoWindow(&showDemoWindow);
     }
 
-    // FIX 3: Improved Inspector with proper IDs and error checking
     if (ImGui::Begin("Inspector"))
     {
-        if (ImGui::CollapsingHeader("Transform"))
+        if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
         {
             ImGui::Text("Position");
             
@@ -121,10 +132,12 @@ void Editor::Update()
             ImGui::PopID();
             
             ImGui::Text("Scale");
-            static float scale[3] = {1.0f, 1.0f, 1.0f};
-            ImGui::PushID("Scale");
-            ImGui::DragFloat3("##scale", scale, 0.01f);
-            ImGui::PopID();
+            ImGui::SameLine();
+            static int scale[3] = {1.0f, 1.0f, 1.0f};
+            ImGui::InputInt("X", scale);
+            // ImGui::PushID("Scale");
+            // ImGui::DragFloat3("##scale", scale, 0.01f);
+            // ImGui::PopID();
         }
         
         // FIX 4: Configuration dropdown with proper handling
