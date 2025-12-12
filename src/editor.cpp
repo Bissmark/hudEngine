@@ -87,7 +87,17 @@ void Editor::Update()
     }
     ImGui::End();
 
-    if (ImGui::Begin("Viewport"))
+    if (ImGui::Begin("Scene"))
+    {
+        ImGui::Text("Scene view will go here");
+        
+        // Get available region for rendering
+        ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+        ImGui::Text("Viewport Size: %.0fx%.0f", viewportPanelSize.x, viewportPanelSize.y);
+    }
+    ImGui::End();
+
+    if (ImGui::Begin("Game"))
     {
         ImGui::Text("Game view will go here");
         
@@ -116,28 +126,67 @@ void Editor::Update()
     if (ImGui::Begin("Inspector"))
     {
         if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
-        {
-            ImGui::Text("Position");
-            
+        {            
             // Use proper unique IDs and float inputs for transform
-            static float position[3] = {0.0f, 0.0f, 0.0f};
-            ImGui::PushID("Position");
-            ImGui::DragFloat3("##pos", position, 0.1f);
-            ImGui::PopID();
+            ImGui::Text("Position");
+            static int position[3] = {1.0f, 1.0f, 1.0f};
+
+            ImGui::Text("X");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##xPosition", &position[0], 0.01f);
+            ImGui::SameLine();
+
+            ImGui::Text("Y");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##yPosition", &position[1], 0.01f);
+            ImGui::SameLine();
+
+            ImGui::Text("Z");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##zPosition", &position[2], 0.01f);
             
             ImGui::Text("Rotation");
-            static float rotation[3] = {0.0f, 0.0f, 0.0f};
-            ImGui::PushID("Rotation");
-            ImGui::DragFloat3("##rot", rotation, 1.0f);
-            ImGui::PopID();
+            static int rotation[3] = {1.0f, 1.0f, 1.0f};
+
+            ImGui::Text("X");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##xRotation", &rotation[0], 0.01f);
+            ImGui::SameLine();
+
+            ImGui::Text("Y");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##yRotation", &rotation[1], 0.01f);
+            ImGui::SameLine();
+
+            ImGui::Text("Z");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##zRotation", &rotation[2], 0.01f);
             
             ImGui::Text("Scale");
-            ImGui::SameLine();
             static int scale[3] = {1.0f, 1.0f, 1.0f};
-            ImGui::InputInt("X", scale);
-            // ImGui::PushID("Scale");
-            // ImGui::DragFloat3("##scale", scale, 0.01f);
-            // ImGui::PopID();
+
+            ImGui::Text("X");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##xScale", &scale[0], 0.01f);
+            ImGui::SameLine();
+
+            ImGui::Text("Y");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##yScale", &scale[1], 0.01f);
+            ImGui::SameLine();
+
+            ImGui::Text("Z");
+            ImGui::SameLine();
+            ImGui::SetNextItemWidth(50);
+            ImGui::DragInt("##zScale", &scale[2], 0.01f);
         }
         
         // FIX 4: Configuration dropdown with proper handling

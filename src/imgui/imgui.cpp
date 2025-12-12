@@ -1594,7 +1594,7 @@ ImGuiIO::ImGuiIO()
     ConfigInputTrickleEventQueue = true;
     ConfigInputTextCursorBlink = true;
     ConfigInputTextEnterKeepActive = false;
-    ConfigDragClickToInputText = false;
+    ConfigDragClickToInputText = true;
     ConfigWindowsResizeFromEdges = true;
     ConfigWindowsMoveFromTitleBarOnly = false;
     ConfigWindowsCopyContentsWithCtrlC = false;
