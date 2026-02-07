@@ -129,7 +129,7 @@ void Editor::Update()
         {            
             // Use proper unique IDs and float inputs for transform
             ImGui::Text("Position");
-            static int position[3] = {1.0f, 1.0f, 1.0f};
+            static int position[3] = {1, 1, 1};
 
             ImGui::Text("X");
             ImGui::SameLine();
@@ -149,7 +149,7 @@ void Editor::Update()
             ImGui::DragInt("##zPosition", &position[2], 0.01f);
             
             ImGui::Text("Rotation");
-            static int rotation[3] = {1.0f, 1.0f, 1.0f};
+            static int rotation[3] = {1, 1, 1};
 
             ImGui::Text("X");
             ImGui::SameLine();
@@ -169,7 +169,7 @@ void Editor::Update()
             ImGui::DragInt("##zRotation", &rotation[2], 0.01f);
             
             ImGui::Text("Scale");
-            static int scale[3] = {1.0f, 1.0f, 1.0f};
+            static int scale[3] = {1, 1, 1};
 
             ImGui::Text("X");
             ImGui::SameLine();
